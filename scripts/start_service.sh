@@ -52,9 +52,15 @@ echo "$(date) - Build completed successfully" >> $LOG_FILE
 echo "Starting service..."
 cd $SERVICE_DIR
 export CONFIG_PATH="$CONFIG_DIR/solanakeys.ini"
-export MODE="DEV"
-export PORT=3001
-echo "Configuration: $CONFIG_PATH (MODE=$MODE)"
+# Csak akkor állítjuk be a MODE-ot, ha nincs még beállítva
+if [ -z "$MODE" ]; then
+    export MODE="DEV"
+fi
+# Csak akkor állítjuk be a PORT-ot, ha nincs még beállítva
+if [ -z "$PORT" ]; then
+    export PORT=3001
+fi
+echo "Configuration: $CONFIG_PATH (MODE=$MODE, PORT=$PORT)"
 
 # Run the service in the background and save PID
 echo "Running server on port 3001..."
@@ -69,7 +75,7 @@ sleep 3
 if ps -p $PID > /dev/null; then
     echo "Service is running successfully"
     # Check if service is responding
-    if curl -s http://localhost:3001/health > /dev/null; then
+    if curl -s "http://localhost:$PORT/health" > /dev/null; then
         echo "API is responding correctly"
         echo "$(date) - API is responding correctly" >> $LOG_FILE
     else
