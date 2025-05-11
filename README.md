@@ -170,9 +170,9 @@ crontab -e
 
 The service can be configured with the following environment variables:
 
-- `MODE` - 'DEV' or 'LIVE' (default: 'DEV')
+- `WALLET_SERVICE_MODE` - 'DEV' or 'LIVE' (default: 'DEV')
 - `CONFIG_PATH` - Path to configuration file (default: './config/solanakeys.ini')
-- `PORT` - Port to run the service on (default: 3001)
+- `WALLET_SERVICE_PORT` - Port to run the service on (default: 3001)
 
 ## Security Considerations
 

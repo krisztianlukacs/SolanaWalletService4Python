@@ -53,17 +53,17 @@ echo "Starting service..."
 cd $SERVICE_DIR
 export CONFIG_PATH="$CONFIG_DIR/solanakeys.ini"
 # Csak akkor állítjuk be a MODE-ot, ha nincs még beállítva
-if [ -z "$MODE" ]; then
-    export MODE="DEV"
+if [ -z "$WALLET_SERVICE_MODE" ]; then
+    export WALLET_SERVICE_MODE="DEV"
 fi
 # Csak akkor állítjuk be a PORT-ot, ha nincs még beállítva
-if [ -z "$PORT" ]; then
-    export PORT=3001
+if [ -z "$WALLET_SERVICE_PORT" ]; then
+    export WALLET_SERVICE_PORT=3001
 fi
-echo "Configuration: $CONFIG_PATH (MODE=$MODE, PORT=$PORT)"
+echo "Configuration: $CONFIG_PATH (MODE=$WALLET_SERVICE_MODE, PORT=$WALLET_SERVICE_PORT)"
 
 # Run the service in the background and save PID
-echo "Running server on port 3001..."
+echo "Running server on port $WALLET_SERVICE_PORT..."
 nohup node dist/server.js > $LOG_FILE 2>&1 &
 PID=$!
 echo $PID > $PID_FILE
@@ -75,7 +75,7 @@ sleep 3
 if ps -p $PID > /dev/null; then
     echo "Service is running successfully"
     # Check if service is responding
-    if curl -s "http://localhost:$PORT/health" > /dev/null; then
+    if curl -s "http://localhost:$WALLET_SERVICE_PORT/health" > /dev/null; then
         echo "API is responding correctly"
         echo "$(date) - API is responding correctly" >> $LOG_FILE
     else

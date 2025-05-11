@@ -10,7 +10,7 @@ const app = express();
 app.use(express.json());
 
 // Load configuration
-const mode = process.env.MODE || 'DEV';
+const mode = process.env.WALLET_SERVICE_MODE || 'DEV';
 const configPath = process.env.CONFIG_PATH || 
                   path.join(process.cwd(), 'config/solanakeys.ini');
 
@@ -123,7 +123,7 @@ app.get('/token/name/:mint', async (req, res) => {
 });
 
 // Start the server
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.WALLET_SERVICE_PORT || 3001;
 
 // Create a more robust error handler
 process.on('uncaughtException', (error) => {

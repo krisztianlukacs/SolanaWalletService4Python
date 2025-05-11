@@ -5,7 +5,7 @@ import json
 import sys
 import os
 
-SERVICE_URL = "http://localhost:3001"
+SERVICE_URL = f"http://localhost:{os.getenv('WALLET_SERVICE_PORT', '3001')}"
 
 def test_wallet_service():
     print(f"Testing Solana Wallet Service at {SERVICE_URL}")

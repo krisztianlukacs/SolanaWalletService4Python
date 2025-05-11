@@ -23,9 +23,9 @@ StandardOutput=syslog
 StandardError=syslog
 SyslogIdentifier=solana-wallet-service
 Environment=NODE_ENV=production
-Environment=PORT=3001
+Environment=WALLET_SERVICE_PORT=3001
 Environment=CONFIG_PATH=$SERVICE_DIR/config/solanakeys.ini
-Environment=MODE=DEV
+Environment=WALLET_SERVICE_MODE=DEV
 
 [Install]
 WantedBy=multi-user.target
