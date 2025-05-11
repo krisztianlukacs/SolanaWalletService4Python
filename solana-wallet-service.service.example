@@ -1,0 +1,22 @@
+[Unit]
+Description=Solana Wallet Service for Python
+After=network.target
+
+[Service]
+Type=simple
+User=REPLACE_WITH_YOUR_USERNAME
+WorkingDirectory=/path/to/SolanaWalletService4Python
+ExecStart=/path/to/SolanaWalletService4Python/scripts/start_service.sh
+ExecStop=/path/to/SolanaWalletService4Python/scripts/stop_service.sh
+Restart=on-failure
+RestartSec=10
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=solana-wallet-service
+Environment=NODE_ENV=production
+Environment=PORT=3001
+Environment=CONFIG_PATH=/path/to/SolanaWalletService4Python/config/solanakeys.ini
+Environment=MODE=DEV
+
+[Install]
+WantedBy=multi-user.target

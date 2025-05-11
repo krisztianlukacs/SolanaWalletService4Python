@@ -1,0 +1,29 @@
+# Node.js
+node_modules/
+dist/
+npm-debug.log
+package-lock.json
+
+# Configuration with sensitive data
+/config/solanakeys.ini
+
+# Logs
+*.log
+
+# PID file
+*.pid
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
