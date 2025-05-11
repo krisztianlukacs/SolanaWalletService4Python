@@ -29,3 +29,5 @@ Thumbs.db
 *.swo
 
 scripts/startup.sh
+
+*.code-workspace
